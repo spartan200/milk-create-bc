@@ -4,6 +4,7 @@ var router = express.Router();
 var Member = require('../models/member');
 var Meetup = require('../models/meetup');
 var MemberMeetupBeer = require('../models/memberMeetupBeer');
+var BeerService = require('../services/beer.service');
 
 // Mongoose is for the database
 const mongoose = require("mongoose");
@@ -27,22 +28,9 @@ router.post('/ClaimBeer', async (req, res) => {
     const brewery = req.body.brewery;
     const beer = req.body.beer;
 
-    /*mongoose.connect("mongodb://localhost:27017/Dogs", {
-    }).then(() => {
-        for (var c in mongoose.Collection)
-            console.log(c);
-        // Check that the member belongs to a meetup
-        // Add a development meetup
-        mongoose.member.find({ email: /^memberId$/i }, (err, member) => {
-            if (err)
-                console.log(err);
-            else
-                console.log("Member: " + member);
-        });
-    });*/
-
-    // Make sure the member exists
-    //var member = await Member.findOne({ email: new RegExp('^' + memberId + '$', 'i')}).exec();
+    var result = await new BeerService().claimBeer(memberId, brewery, beer);
+    res.send(result);
+    /*// Make sure the member exists
     var member = await Member.getMember(memberId);
     if (member == null) {
         // Member doesn't actually exist
@@ -83,7 +71,7 @@ router.post('/ClaimBeer', async (req, res) => {
         // There was an error inserting
         res.send({ success: false, errorMessage: result.err });
     } else
-        res.send({ success: true });
+        res.send({ success: true });*/
 });
 
 // export this router to use in our app.js
