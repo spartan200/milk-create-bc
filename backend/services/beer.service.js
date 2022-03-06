@@ -42,7 +42,7 @@ module.exports = function BeerService() {
     // Everything is correct to be inserted into the database
     var result = await MemberMeetupBeer.insertRecord(member.email, meetup.activeDate, brewery, beer);
 
-    if (err) {
+    if (result.err) {
         // There was an error inserting
         return { success: false, errorMessage: result.err };
     } else

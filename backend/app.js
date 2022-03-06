@@ -7,6 +7,7 @@ app.use(express.json({
 // Mongoose is for the database
 const mongoose = require("mongoose");
 const Meetup = require('./models/meetup');
+const Member = require('./models/member');
 
 // Database schema
 // Lookup table for breweries
@@ -44,11 +45,11 @@ var voteSchema = new mongoose.Schema({
 var db = function() {
     console.log('Creating the database');
 
-    mongoose.connect("mongodb://localhost:27017/Dogs", {
+    mongoose.connect("mongodb://localhost:27017/MCBC", {
     })
-    .then(() => {
+    .then(async () => {
         console.log("DB CONNECTED ");
-
+        
         /*// Add a development member
         var Member = mongoose.model("member", memberSchema);
 

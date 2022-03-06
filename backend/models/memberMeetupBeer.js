@@ -19,7 +19,7 @@ memberMeetupBeerSchema.statics.getByBeer = async function(brewery, beer) {
 }
 
 memberMeetupBeerSchema.statics.insertRecord = async function(email, meetupDate, brewery, beer) {
-    return await this.create({ member: member.email, activeDate: meetupDate, brewery: brewery, beer: beer });
+    return await this.create({ member: email, activeDate: meetupDate, brewery: brewery, beer: beer });
 }
 
 module.exports = mongoose.model("MemberMeetupBeer", memberMeetupBeerSchema);
