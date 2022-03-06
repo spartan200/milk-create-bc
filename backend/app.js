@@ -6,6 +6,7 @@ app.use(express.json({
 
 // Mongoose is for the database
 const mongoose = require("mongoose");
+const Meetup = require('./models/meetup');
 
 // Database schema
 // Lookup table for breweries
@@ -19,25 +20,6 @@ var beerSchema = new mongoose.Schema({
     brewery: String, // FK to the brewery table
     beer: String,
     comment: String
-});
-
-// Contains information for each member in the Beer Club
-var memberSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    password: String
-});
-
-// Contains information related to the meetups and beer exchanges
-var meetupSchema = new mongoose.Schema({
-    activeDate: Date,
-    meetingDate: Date
-});
-
-// Joiner table for members and meetups
-var memberMeetupSchema = new mongoose.Schema({
-    member: String, // FK to the member table
-    activeDate: Date // FK to the meetup table
 });
 
 // Joiner table for member, beers, and meetups
@@ -75,7 +57,7 @@ var db = function() {
     .then(() => {
         console.log("DB CONNECTED ");
 
-        // Add a development member
+        /*// Add a development member
         var Member = mongoose.model("member", memberSchema);
 
         // Add a development meetup
@@ -105,7 +87,7 @@ var db = function() {
         }
         });
 
-        console.log(mongoose.Collection);
+        console.log(mongoose.Collection);*/
 
     });
 
