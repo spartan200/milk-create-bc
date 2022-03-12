@@ -11,6 +11,14 @@ function Template() {
     <Container className='ClaimBeer'>
       <Row className="justify-content-md-center">
         <Col xs md="6">
+          <div class="alert alert-primary" role="alert">
+            <h3 class="alert-heading">Claim Beer</h3>
+          </div>
+        </Col>
+      </Row>
+
+      <Row className="justify-content-md-center">
+        <Col xs md="6">
           <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
             <Form.Group className="mb-3" controlId="brewery">
               <Form.Label>Brewery</Form.Label>
