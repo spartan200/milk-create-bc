@@ -36,7 +36,7 @@ function template() {
                 <Form.Label>{cat}</Form.Label>
                 <Form.Select required value={this.state.votes[index]}
                              onChange={this.categoryChange}>
-                  {this.state.beers.map(beer => <option>{beer}</option>)}
+                  {this.state.beers.map(beer => <option>{beer.beer == '' ? '' : `${beer.beer} (${beer.brewery})`}</option>)}
                 </Form.Select>
                 <Form.Control.Feedback>Looks Good!</Form.Control.Feedback>
                 <Form.Control.Feedback type="invalid">Please enter the "{cat}".</Form.Control.Feedback>

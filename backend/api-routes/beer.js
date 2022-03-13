@@ -16,10 +16,10 @@ router.get('/BeerClaimed', function(req, res) {
 });
 
 // Returns all the beers that can be currently voted on.
-router.get('/VotableBeers', function(req, res) {
+router.get('/VotableBeers', async (req, res) => {
     console.log('Getting Votable Beers');
 
-    const result = { success: true, beers: ['Beer 1', 'Beer 3']};
+    const result = await new BeerService().votableBeers();
     res.send(result);
 });
 

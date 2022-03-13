@@ -12,7 +12,7 @@ var meetupSchema = new mongoose.Schema({
  * @returns - Active meetup, Null if there is not active meetup.
  */
 meetupSchema.statics.getActiveMeetup = async function() {
-    return await this.findOne({ activeDate: 'CanClaim' });
+    return await this.findOne({ status: 'CanClaim' });
 }
 
 /**

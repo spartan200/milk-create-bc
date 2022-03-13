@@ -9,7 +9,7 @@ class vote extends React.Component {
     const categories = new VoteService().voteCategories().categories;
 
     // Create the votes array
-    this.state = { validated: false, categories: categories, beers: [], failureMessage: null,
+    this.state = { validated: false, categories: categories, beers: [{brewery: String, beer: String}], failureMessage: null,
                    email: '', votes: new Array(categories.length) };
 
     this.emailChange = this.emailChange.bind(this);

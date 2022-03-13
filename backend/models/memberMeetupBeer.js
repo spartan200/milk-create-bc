@@ -12,10 +12,19 @@ var memberMeetupBeerSchema = new mongoose.Schema({
  * Get when the given beer was claimed for a meetup.
  * @param {String} brewery 
  * @param {String} beer 
- * @returns - MemberMeetupBeer object for the given brewery and beer. Null if the record doesn't exist.
+ * @returns {{member: String, activeDate: Date, brewery: String, beer: String}} - MemberMeetupBeer object for the given brewery and beer. Null if the record doesn't exist.
  */
 memberMeetupBeerSchema.statics.getByBeer = async function(brewery, beer) {
     return await this.findOne({ brewery: brewery, beer: beer});
+}
+
+/**
+ * Returns all the beers for the given meetup.
+ * @param {*} meetupDate 
+ * @returns {{member: String, activeDate: Date, brewery: String, beer: String}}
+ */
+memberMeetupBeerSchema.statics.getByMeetup = async function(meetupDate) {
+    return await this.find({ activeDate: meetupDate });
 }
 
 memberMeetupBeerSchema.statics.insertRecord = async function(email, meetupDate, brewery, beer) {

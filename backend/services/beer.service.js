@@ -4,6 +4,22 @@ var MemberMeetupBeer = require('../models/memberMeetupBeer');
 
 module.exports = function BeerService() {
 
+    this.votableBeers = async function() {
+        // Get the active meetup
+        var meetup = await Meetup.getActiveMeetup();
+        if (meetup == null)
+            // There isn't an active meetup
+            return { success: false, errorMessage: 'There are currently not any active Meetups' };
+
+        // Get the beers that were claimed
+        var claimedBeers = await MemberMeetupBeer.getByMeetup(meetup.activeDate);
+        if (claimedBeers == null)
+            // There as an error
+            return { success: false, errorMessage: 'There was an error getting the Beers for the Meetup' };
+        console.log(Array.from(claimedBeers, x => {return { brewery: x.brewery, beer: x.beer}}));
+        return { success: true, beers: Array.from(claimedBeers, x => {return { brewery: x.brewery, beer: x.beer}}) };
+    }
+
     /**
      * Claim a beer for the given member in the active meetup
      * @param {String} email 

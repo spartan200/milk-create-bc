@@ -15,7 +15,7 @@ module.exports = function VoteService() {
 
     /**
      * Returns all the beers that can be voted on
-     * @returns {{ success: boolean, beers?: String[], errorMessage?: String}}
+     * @returns {{ success: boolean, beers?: {brewery: String, beer: String}[], errorMessage?: String}}
      */
     this.beers = async function() {
         try {
@@ -24,7 +24,7 @@ module.exports = function VoteService() {
                 return { success: false, errorMessage: 'There was an error getting the beers that can be voted on.' };
             else {
                 // Add a blank beer option
-                response.data.beers.splice(0, 0, '');
+                response.data.beers.splice(0, 0, {brewery: '', beer: ''});
                 return response.data;
             }
         } catch (error) {
