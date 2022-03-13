@@ -31,8 +31,8 @@ function template() {
         <Col xs md="6">
           <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
             { 
-            this.state.categories.map(cat =>
-            <Form.Group className="mb-3">
+            this.state.categories.map((cat, index) =>
+            <Form.Group className="mb-3" controlId={`category${index}`}>
                 <Form.Label>{cat}</Form.Label>
                 <Form.Select required>
                   {this.state.beers.map(beer => <option>{beer}</option>)}

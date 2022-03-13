@@ -7,15 +7,30 @@ class vote extends React.Component {
     super(props);
 
     const categories = new VoteService().voteCategories().categories;
-    const beers = [null, 'Lucky (Labatt)', 'Saison (Field House)'];
 
-    this.state = { validated: false, categories, beers, failureMessage: null };
+    this.state = { validated: false, categories: categories, beers: [], failureMessage: null };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  async componentDidMount() {
+    await this._load();
+  }
+
+  async _load() {
+    const result = await new VoteService().beers();
+    if (!result.success) {
+      // Something happended so set the failure message
+      this.setState({ failureMessage: result.errorMessage });
+      return;
+    }
+
+    // Set the beers
+    this.setState({ beers: result.beers });
+  }
+
   render() {
-    return template.call(this);
+    return template.call(this)
   }  
   
   async handleSubmit(event) {

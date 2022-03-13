@@ -15,6 +15,14 @@ router.get('/BeerClaimed', function(req, res) {
     res.send('GET BeerClaimed route on things');
 });
 
+// Returns all the beers that can be currently voted on.
+router.get('/VotableBeers', function(req, res) {
+    console.log('Getting Votable Beers');
+
+    const result = { success: true, beers: ['Beer 1', 'Beer 3']};
+    res.send(result);
+});
+
 // Claims the beer.  Function will check to see if the beer
 // has already been claimed for the current/previous meetup.
 router.post('/ClaimBeer', async (req, res) => {
