@@ -15,7 +15,7 @@ function template() {
           <Link to="/ClaimBeer"><Button variant="primary">Claim Beer</Button></Link>  
         </Col>
         <Col>
-          <Button variant="primary">Vote for Beers</Button>
+          <Link to="/Vote"><Button variant="primary">Vote for Beers</Button></Link>
         </Col>
       </Row>
     </Container>

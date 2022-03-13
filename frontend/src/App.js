@@ -8,7 +8,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Home from './components/home';
 import ClaimBeer from './components/claim-beer';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Vote from './components/vote';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
@@ -41,10 +42,11 @@ function App() {
             </Container>
           </Navbar>
         </header>
-        
+
         <Routes>
           <Route exact path='/' element={< Home />}></Route>
           <Route exact path='/ClaimBeer' element={< ClaimBeer />}></Route>
+          <Route exact path='/Vote' element={< Vote />}></Route>
         </Routes>
       </div>
     </Router>
