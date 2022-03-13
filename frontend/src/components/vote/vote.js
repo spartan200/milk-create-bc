@@ -9,7 +9,7 @@ class vote extends React.Component {
     const categories = new VoteService().voteCategories().categories;
     const beers = [null, 'Lucky (Labatt)', 'Saison (Field House)'];
 
-    this.state = { categories, beers };
+    this.state = { categories, beers, failureMessage: null };
   }
 
   render() {

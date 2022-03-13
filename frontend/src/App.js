@@ -34,7 +34,7 @@ function App() {
         <header className="app-header">
           <Navbar bg="light" expand="lg">
             <Container>
-              <Navbar.Brand href="#home">MCBC</Navbar.Brand>
+              <Navbar.Brand href="/">MCBC</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
 

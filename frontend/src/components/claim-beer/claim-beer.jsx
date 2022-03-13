@@ -5,17 +5,25 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Alert from 'react-bootstrap/Alert';
 
 function Template() {
   return (
     <Container className='ClaimBeer'>
       <Row className="justify-content-md-center">
         <Col xs md="6">
-          <div className="alert alert-primary" role="alert">
-            <h3 className="alert-heading">Claim Beer</h3>
-          </div>
+          <Alert variant="primary">
+            <Alert.Heading>Claim Beer</Alert.Heading>
+          </Alert>
         </Col>
       </Row>
+
+      {/* Contains the failure message if there is a problem */}
+      {this.state.failureMessage &&
+        <Row className="justify-content-md-center">
+          <Col xs md="6"><Alert variant="danger">{this.state.failureMessage}</Alert></Col>
+        </Row>
+      }
 
       <Row className="justify-content-md-center">
         <Col xs md="6">

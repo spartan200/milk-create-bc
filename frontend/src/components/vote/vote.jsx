@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 
 function template() {
 
@@ -13,11 +14,19 @@ function template() {
     <Container className='Vote'>
       <Row className="justify-content-md-center">
         <Col xs md="6">
-          <div className="alert alert-primary" role="alert">
-            <h3 className="alert-heading">Vote for Beers</h3>
-          </div>
+          <Alert variant="primary">
+            <Alert.Heading>Vote for Beers</Alert.Heading>
+          </Alert>
         </Col>
       </Row>
+
+      {/* Contains the failure message if there is a problem */}
+      {this.state.failureMessage &&
+        <Row className="justify-content-md-center">
+          <Col xs md="6"><Alert variant="danger">{this.state.failureMessage}</Alert></Col>
+        </Row>
+      }
+
       <Row className="justify-content-md-center">
         <Col xs md="6">
           <Form>

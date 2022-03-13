@@ -5,7 +5,8 @@ import ClaimBeerService from '../../services/claim.beer.service.js';
 class ClaimBeer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { brewery: '', beer: '', email: '', validated: false };
+
+    this.state = { brewery: '', beer: '', email: '', validated: false, failureMessage: null };
 
     this.breweryChange = this.breweryChange.bind(this);
     this.beerChange = this.beerChange.bind(this);
@@ -67,7 +68,7 @@ class ClaimBeer extends React.Component {
     // Things are valid so call the web service to claim the beer
     var result = await new ClaimBeerService().claimBeer(this.state.brewery, this.state.beer, this.state.email);
     if (!result.success)
-      alert(result.errorMessage);
+      this.setState({ failureMessage: result.errorMessage });
   }
 }
 
