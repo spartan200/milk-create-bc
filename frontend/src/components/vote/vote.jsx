@@ -29,14 +29,16 @@ function template() {
 
       <Row className="justify-content-md-center">
         <Col xs md="6">
-          <Form>
+          <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
             { 
             this.state.categories.map(cat =>
             <Form.Group className="mb-3">
                 <Form.Label>{cat}</Form.Label>
-                <Form.Select>
+                <Form.Select required>
                   {this.state.beers.map(beer => <option>{beer}</option>)}
                 </Form.Select>
+                <Form.Control.Feedback>Looks Good!</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Please enter the "{cat}".</Form.Control.Feedback>
             </Form.Group>
             )}
             
