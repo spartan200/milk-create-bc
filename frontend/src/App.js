@@ -6,11 +6,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Home from './components/home';
 import ClaimBeer from './components/claim-beer';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
+    <Router>
+     <div className="App">
       {/*<header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <button type="button" class="btn btn-primary">Primary</button>
@@ -27,26 +30,24 @@ function App() {
           Learn React
         </a>
       </header>*/}
-      <header className="app-header">
-        <Navbar bg="light" expand="lg">
-          <Container>
-            <Navbar.Brand href="#home">MCBC</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
+        <header className="app-header">
+          <Navbar bg="light" expand="lg">
+            <Container>
+              <Navbar.Brand href="#home">MCBC</Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
 
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      </header>
-      {/*<Container>
-        <Row>
-          <Col />
-          <Col><Button variant="primary">Claim Beer</Button></Col>
-          <Col><Button variant="primary">Vote for Beers</Button></Col>
-        </Row>
-      </Container>*/}
-      <ClaimBeer></ClaimBeer>
-    </div>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+        </header>
+        
+        <Routes>
+          <Route exact path='/' element={< Home />}></Route>
+          <Route exact path='/ClaimBeer' element={< ClaimBeer />}></Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
