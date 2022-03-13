@@ -37,25 +37,6 @@ function template() {
           </Form>
         </Col>
       </Row>
-      {/*
-        this.state.categories.map(el =>
-          <Row className="justify-content-md-center">
-            <Col xs md="3">{el}</Col>
-            <Col xs md="3">
-              <Form.Select>
-                {this.state.beers.map(beerEl => <option>{beerEl}</option>)}
-              </Form.Select>
-            </Col>
-          </Row>
-        )
-      }
-      <Row className="justify-content-md-center">
-        <Col xs md="6">
-          <Button variant="primary" type="submit">
-              Submit
-          </Button>
-        </Col>
-    </Row>*/}
     </Container>
   );
 };
