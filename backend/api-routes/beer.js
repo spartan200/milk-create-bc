@@ -21,11 +21,11 @@ router.post('/ClaimBeer', async (req, res) => {
     console.log("Claiming beer...");
 
     // Get the parameters
-    const memberId = req.body.memberId;
+    const email = req.body.email;
     const brewery = req.body.brewery;
     const beer = req.body.beer;
 
-    var result = await new BeerService().claimBeer(memberId, brewery, beer);
+    var result = await new BeerService().claimBeer(email, brewery, beer);
     res.send(result);
 });
 

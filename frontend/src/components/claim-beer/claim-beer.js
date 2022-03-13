@@ -1,5 +1,6 @@
 import React, { useState }    from "react";
 import Template from "./claim-beer.jsx";
+import ClaimBeerService from '../../services/claim.beer.service.js';
 
 class ClaimBeer extends React.Component {
   constructor(props) {
@@ -44,18 +45,29 @@ class ClaimBeer extends React.Component {
     this.setState({ email: event.target.value, validated: false });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     } else {
-      alert('The Brewery submitted: ' + this.state.brewery);
-      alert('The beer is: ' + this.state.beer);
-      alert('The email: ' + this.state.email);
+      //alert('The Brewery submitted: ' + this.state.brewery);
+      //alert('The beer is: ' + this.state.beer);
+      //alert('The email: ' + this.state.email);
+
+      event.preventDefault();
+      event.stopPropagation();
     }
 
     this.setState({ validated: true });
+
+    if (form.checkValidity() === false)
+      return;
+
+    // Things are valid so call the web service to claim the beer
+    var result = await new ClaimBeerService().claimBeer(this.state.brewery, this.state.beer, this.state.email);
+    if (!result.success)
+      alert(result.errorMessage);
   }
 }
 
