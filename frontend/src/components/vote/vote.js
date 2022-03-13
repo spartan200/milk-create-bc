@@ -8,8 +8,12 @@ class vote extends React.Component {
 
     const categories = new VoteService().voteCategories().categories;
 
-    this.state = { validated: false, categories: categories, beers: [], failureMessage: null };
+    // Create the votes array
+    this.state = { validated: false, categories: categories, beers: [], failureMessage: null,
+                   email: '', votes: new Array(categories.length) };
 
+    this.emailChange = this.emailChange.bind(this);
+    this.categoryChange = this.categoryChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -32,7 +36,38 @@ class vote extends React.Component {
   render() {
     return template.call(this)
   }  
+
+  /**
+   * Handles when the email value changes.
+   * Update the email in the state.
+   * @param {*} event 
+   */
+  emailChange(event) {
+    // Update the value in state
+    this.setState({ email: event.target.value, validated: false });
+  }
   
+  /**
+   * Handles when one of the values in the vote select changes.
+   * @param {*} event 
+   */
+  categoryChange(event) {
+    // Update the value in the state
+    // Get the index from the id
+    var index = parseInt(event.target.id.replace('category', ''));
+
+    const votes = this.state.votes;
+    votes[index] = event.target.value;
+    this.setState({ votes: votes, validated: false });
+  }
+
+  /**
+   * Handles when the submit button is clicked.
+   * Check that everything is valid.
+   * If it is valid send the votes to the API.
+   * @param {*} event 
+   * @returns 
+   */
   async handleSubmit(event) {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -47,6 +82,9 @@ class vote extends React.Component {
 
     if (form.checkValidity() === false)
       return;
+
+    alert(this.state.email);
+    alert(JSON.stringify(this.state.votes));
   }
 }
 

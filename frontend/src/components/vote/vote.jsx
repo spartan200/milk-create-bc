@@ -34,13 +34,22 @@ function template() {
             this.state.categories.map((cat, index) =>
             <Form.Group className="mb-3" controlId={`category${index}`}>
                 <Form.Label>{cat}</Form.Label>
-                <Form.Select required>
+                <Form.Select required value={this.state.votes[index]}
+                             onChange={this.categoryChange}>
                   {this.state.beers.map(beer => <option>{beer}</option>)}
                 </Form.Select>
                 <Form.Control.Feedback>Looks Good!</Form.Control.Feedback>
                 <Form.Control.Feedback type="invalid">Please enter the "{cat}".</Form.Control.Feedback>
             </Form.Group>
             )}
+
+            <Form.Group className="mb-3" controlId="email">
+              <Form.Label>Email Address</Form.Label>
+                <Form.Control type="email" placeholder="name@example.com" required
+                              value={this.state.email} onChange={this.emailChange} />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please enter an email.</Form.Control.Feedback>
+            </Form.Group>
             
             <Button variant="primary" type="submit">
               Submit
