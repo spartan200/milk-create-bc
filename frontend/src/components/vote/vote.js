@@ -91,7 +91,8 @@ class vote extends React.Component {
       return;
 
     var result = await new VoteService().vote(this.state.email, this.state.votes);
-    alert(JSON.stringify(result))
+    if (!result.success)
+      this.setState({ failureMessage: result.failureMessage });
   }
 }
 
