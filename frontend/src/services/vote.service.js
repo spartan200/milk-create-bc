@@ -32,4 +32,24 @@ module.exports = function VoteService() {
             return { success: false, errorMessage: 'There was an error getting the beers that can be voted on.' };
         }
     }
+
+    /**
+     * 
+     * @param {String} email - Email for voter
+     * @param {{ brewery: String, beer: String, category: String}[]} votes - Array containing the beers and the vote category
+     * @returns {{ success: boolean, errorMessage?: String}}
+     */
+    this.vote = async function(email, votes) {
+        try {
+            const response = await axios.post('http://localhost:2000/votes/Vote', { email: email, votes: votes });
+            if (response.status != 200)
+                return { success: false, errorMessage: 'There was an error voting for beers.' };
+            else {
+                return response.data;
+            }
+        } catch (error) {
+            console.error(error);
+            return { success: false, errorMessage: 'There was an error voting for beers.' };
+        }
+    }
 }

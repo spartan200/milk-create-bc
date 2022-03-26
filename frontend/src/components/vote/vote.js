@@ -10,7 +10,7 @@ class vote extends React.Component {
 
     // Create the votes array
     this.state = { validated: false, categories: categories, beers: [{brewery: String, beer: String}], failureMessage: null,
-                   email: '', votes: new Array(categories.length) };
+                   email: '', votes: new Array(categories.length), votesJsx: new Array(categories.length) };
 
     this.emailChange = this.emailChange.bind(this);
     this.categoryChange = this.categoryChange.bind(this);
@@ -56,9 +56,16 @@ class vote extends React.Component {
     // Get the index from the id
     var index = parseInt(event.target.id.replace('category', ''));
 
+    // Get the selected index of the beer
+    const beerIndex = event.target.selectedIndex;
+
     const votes = this.state.votes;
-    votes[index] = event.target.value;
-    this.setState({ votes: votes, validated: false });
+    votes[index] = { ...this.state.beers[beerIndex], category: this.state.categories[index] };
+
+    const votesJsx = this.state.votesJsx;
+    votesJsx[index] = event.target.value;
+  
+    this.setState({ votes: votes, votesJsx: votesJsx, validated: false });
   }
 
   /**
@@ -83,8 +90,8 @@ class vote extends React.Component {
     if (form.checkValidity() === false)
       return;
 
-    alert(this.state.email);
-    alert(JSON.stringify(this.state.votes));
+    var result = await new VoteService().vote(this.state.email, this.state.votes);
+    alert(JSON.stringify(result))
   }
 }
 

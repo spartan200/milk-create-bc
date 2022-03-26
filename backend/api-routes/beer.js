@@ -3,9 +3,6 @@ var router = express.Router();
 
 var BeerService = require('../services/beer.service');
 
-// Mongoose is for the database
-const mongoose = require("mongoose");
-
 router.get('/', function(req, res) {
     res.send('GET beer route on things');
 });

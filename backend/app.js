@@ -31,17 +31,6 @@ var voteCategorySchema = new mongoose.Schema({
     active: Boolean
 });
 
-// Beer vote
-var voteSchema = new mongoose.Schema({
-    category: String, // FK to the vote_category table
-    member: String, // FK to the member_meetup table
-    activeDate: Date, // FK to the member_meetup table
-    beerMember: String, // FK to the member_meetup_beer table
-    beerActiveDate: String, // FK to the member_meetup_beer table
-    beerBrewery: String, // FK to the member_meetup_beer table
-    beer: String // FK to the member_meetup_beer table
-});
-
 // Function that will create the database
 // TODO: This should be in a separate file
 var db = function() {
@@ -104,6 +93,7 @@ var members = require('./api-routes/member.js');
 var meetups = require('./api-routes/meetup.js');
 var memberMeetups = require('./api-routes/memberMeetup.js');
 var beers = require('./api-routes/beer.js');
+var votes = require('./api-routes/vote.js');
 var untappd = require('./api-routes/untappd.js');
 const { stringify } = require('nodemon/lib/utils');
 //const { default: mongoose } = require('mongoose');
@@ -112,6 +102,7 @@ app.use('/members', members);
 app.use('/meetups', meetups);
 app.use('/memberMeetups', memberMeetups);
 app.use('/beers', beers);
+app.use('/votes', votes);
 app.use('/untappd', untappd);
 
 const PORT = 2000;

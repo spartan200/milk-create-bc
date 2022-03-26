@@ -34,7 +34,7 @@ function template() {
             this.state.categories.map((cat, index) =>
             <Form.Group className="mb-3" controlId={`category${index}`}>
                 <Form.Label>{cat}</Form.Label>
-                <Form.Select required value={this.state.votes[index]}
+                <Form.Select required value={this.state.votesJsx[index]}
                              onChange={this.categoryChange}>
                   {this.state.beers.map(beer => <option>{beer.beer == '' ? '' : `${beer.beer} (${beer.brewery})`}</option>)}
                 </Form.Select>
