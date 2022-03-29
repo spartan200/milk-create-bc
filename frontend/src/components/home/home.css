@@ -1,0 +1,8 @@
+.home-container {
+    background-color: red;
+    height: 75vh;
+    background-image: url('beer_flight.jpg');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+}

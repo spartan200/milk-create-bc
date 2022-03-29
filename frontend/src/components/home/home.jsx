@@ -8,13 +8,13 @@ import { Link } from 'react-router-dom'
 
 function template() {
   return (
-    <Container>
-      <Row>
+    <Container className="bg-image home-container">
+      <Row className="h-100">
         <Col />
-        <Col>
+        <Col className="my-auto">
           <Link to="/ClaimBeer"><Button variant="primary">Claim Beer</Button></Link>  
         </Col>
-        <Col>
+        <Col className="my-auto">
           <Link to="/Vote"><Button variant="primary">Vote for Beers</Button></Link>
         </Col>
       </Row>
