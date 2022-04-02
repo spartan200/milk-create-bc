@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col';
 import Home from './components/home';
 import ClaimBeer from './components/claim-beer';
 import Vote from './components/vote';
+import Beers from './components/beers';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
 
@@ -51,8 +52,9 @@ function App() {
 
         <Routes>
           <Route exact path='/' element={< Home />}></Route>
-          <Route exact path='/ClaimBeer' element={< ClaimBeer />}></Route>
-          <Route exact path='/Vote' element={< Vote />}></Route>
+          <Route exact path='/ClaimBeer' element={<ClaimBeer />}></Route>
+          <Route exact path='/Vote' element={<Vote />}></Route>
+          <Route exact path='/Beers' element={<Beers />}></Route>
         </Routes>
       </div>
     </Router>
