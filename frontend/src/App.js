@@ -10,6 +10,7 @@ import Home from './components/home';
 import ClaimBeer from './components/claim-beer';
 import Vote from './components/vote';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
 
 function App() {
   return (
@@ -37,6 +38,11 @@ function App() {
               <Navbar.Brand href="/">MCBC</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto">
+                  <Nav.Link href="/ClaimBeer">Claim Beer</Nav.Link>
+                  <Nav.Link href="/Vote">Vote</Nav.Link>
+                  <Nav.Link href="/Beers">Past Beers</Nav.Link>
+                </Nav>
 
               </Navbar.Collapse>
             </Container>
