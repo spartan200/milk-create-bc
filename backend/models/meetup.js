@@ -16,6 +16,14 @@ meetupSchema.statics.getActiveMeetup = async function() {
 }
 
 /**
+ * Returns the meetups
+ * @returns - All the meetups
+ */
+meetupSchema.statics.getMeetups = async function() {
+    return await this.find();
+}
+
+/**
  * Initializes the table with some data
  */
 meetupSchema.statics.init = async function() {

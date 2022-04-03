@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var BeerService = require('../services/beer.service');
+var MeetupService = require('../services/meetup.service');
 
 router.get('/', function(req, res) {
     res.send('GET beer route on things');
@@ -17,6 +18,16 @@ router.get('/VotableBeers', async (req, res) => {
     console.log('Getting Votable Beers');
 
     const result = await new BeerService().votableBeers();
+    res.send(result);
+});
+
+/**
+ * Returns all the past beers
+ */
+router.get('/PastBeers', async (req, res) => {
+    console.log('Getting the past beers');
+    const result = await new MeetupService().meetupsWithBeers();
+
     res.send(result);
 });
 

@@ -27,6 +27,15 @@ memberMeetupBeerSchema.statics.getByMeetup = async function(meetupDate) {
     return await this.find({ activeDate: meetupDate });
 }
 
+/**
+ * Returns all the meetups, members, and beers
+ * @returns {[{member: String, activeDate: Date, brewery: String, beer: String}]}
+ */
+memberMeetupBeerSchema.statics.getAll = async function() {
+    // TODO: Need to order these
+    return await this.find();
+}
+
 memberMeetupBeerSchema.statics.insertRecord = async function(email, meetupDate, brewery, beer) {
     return await this.create({ member: email, activeDate: meetupDate, brewery: brewery, beer: beer });
 }

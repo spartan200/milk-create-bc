@@ -12,8 +12,8 @@ function template() {
       <Accordion.Body>
         <ListGroup>
           {
-            this.state.beers.map(el => <ListGroup.Item>{el.brewery} - {el.beer}</ListGroup.Item>)
-            }
+            this.state.beers.map(el => <ListGroup.Item key={JSON.stringify(el)}>{el.brewery} - {el.beer}</ListGroup.Item>)
+          }
         </ListGroup>
       </Accordion.Body>
     </Accordion.Item>

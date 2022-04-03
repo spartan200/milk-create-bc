@@ -23,7 +23,7 @@ function template() {
           <Accordion>
             {/* Render all the meetups that come from the backend */}
             {
-              this.state.beers.map(el => <MeetupBeers meetup={el}></MeetupBeers>)
+              this.state.beers.map(el => <MeetupBeers key={el.index} meetup={el}></MeetupBeers>)
             }
           </Accordion>
         </Col>
