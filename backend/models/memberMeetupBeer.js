@@ -3,10 +3,13 @@ const mongoose = require('mongoose');
 // Joiner table for member, beers, and meetups
 var memberMeetupBeerSchema = new mongoose.Schema({
     member: String, // FK to member_meetup table
-    activeDate: Date, // FK to the member_meetup table
+    meetup: String, // FK to the member_meetup table
     brewery: String, // FK to the beer table
     beer: String // FK to the beer table
 });
+
+// Create an unique index
+memberMeetupBeerSchema.index({ member: 1, meetup: 1, brewery: 1, beer: 1}, { unique: true });
 
 /**
  * Get when the given beer was claimed for a meetup.

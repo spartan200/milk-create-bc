@@ -9,10 +9,10 @@ module.exports = function MeetupService() {
         console.log(JSON.stringify(mmbs));
         var lastMeetup = null;
         for (let i = 0; i < mmbs.length; i++) {
-            if (lastMeetup == null || mmbs[i].activeDate != lastMeetup) {
+            if (lastMeetup == null || mmbs[i].meetup != lastMeetup.meetup) {
                 lastMeetup = {
                     index: results.length,
-                    meetup: mmbs[i].activeDate,
+                    meetup: mmbs[i].meetup,
                     beers: []
                 };
 

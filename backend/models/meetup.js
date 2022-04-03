@@ -2,10 +2,13 @@ const mongoose = require('mongoose');
 
 // Contains information related to the meetups and beer exchanges
 var meetupSchema = new mongoose.Schema({
+    name: { type: String, unique: true },
     activeDate: Date,
     meetingDate: Date,
     status: String // Should be 'Archived', 'CanVote', 'CanClaim'
 });
+
+
 
 /**
  * Get the active meetup
@@ -26,12 +29,17 @@ meetupSchema.statics.getMeetups = async function() {
 /**
  * Initializes the table with some data
  */
-meetupSchema.statics.init = async function() {
+/*meetupSchema.statics.init = async function() {
+    console.log('Initializing Meetups...');
+
+    // name shouyld be unique
+    //this.unique()
+    //this.createIndex({ "name": 1}, { unique: true });
 
     return await this.insertMany([
-        { activeDate: new Date(), meetingDate: new Date(), status: 'CanVote' },
-        { activeDate: new Date(), meetingDate: new Date(), status: 'CanClaim' }
+        { name: 'Spring 2022', activeDate: new Date(), meetingDate: new Date(), status: 'CanVote' },
+        { name: 'Winter 2021', activeDate: new Date(), meetingDate: new Date(), status: 'CanClaim' }
     ], {});
-}
+}*/
 
 module.exports = mongoose.model('Meetup', meetupSchema);
