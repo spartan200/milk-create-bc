@@ -6,11 +6,11 @@ class vote extends React.Component {
   constructor(props) {
     super(props);
 
-    const categories = new VoteService().voteCategories().categories;
+
 
     // Create the votes array
-    this.state = { validated: false, categories: categories, beers: [{brewery: String, beer: String}], failureMessage: null,
-                   email: '', votes: new Array(categories.length), votesJsx: new Array(categories.length) };
+    this.state = { validated: false, categories: [String], beers: [{brewery: String, beer: String}], failureMessage: null,
+                   email: '', votes: new Array(0), votesJsx: new Array(0) };
 
     this.emailChange = this.emailChange.bind(this);
     this.categoryChange = this.categoryChange.bind(this);
@@ -22,6 +22,12 @@ class vote extends React.Component {
   }
 
   async _load() {
+    const categories = await new VoteService().voteCategories();
+    if (!categories.success) {
+      // Something happened so set the failure message
+      this.setState({ failureMessage: categories.errorMessage });
+    }
+
     const result = await new VoteService().beers();
     if (!result.success) {
       // Something happended so set the failure message
@@ -30,7 +36,7 @@ class vote extends React.Component {
     }
 
     // Set the beers
-    this.setState({ beers: result.beers });
+    this.setState({ categories: categories.categories, beers: result.beers });
   }
 
   render() {

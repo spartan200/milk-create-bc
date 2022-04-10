@@ -1,6 +1,7 @@
 var Member = require('../models/member');
 var Meetup = require('../models/meetup');
 var Vote = require('../models/vote');
+var Category = require('../models/category');
 
 module.exports = function VoteService() {
     /**
@@ -29,6 +30,13 @@ module.exports = function VoteService() {
                                                      vote.brewery, vote.beer);
             console.debug(JSON.stringify(voteResult));
         }
+    }
 
+    /**
+     * Returns all the active voting categories
+     * @returns 
+     */
+    this.VoteCategories = async function() {
+        return await Category.getActive();
     }
 }

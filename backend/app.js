@@ -10,6 +10,7 @@ app.use(express.json({
 const mongoose = require("mongoose");
 const Meetup = require('./models/meetup');
 const MemberMeetupBeer = require('./models/memberMeetupBeer');
+const Category = require('./models/category');
 const Member = require('./models/member');
 
 // Database schema
@@ -146,6 +147,12 @@ app.listen(PORT, async () => {
                                        { meetup: summer2021, brewery: 'Moon Under Water', beer: 'Seaberry Haze' }
                                     ]);
                     
+    // Voting categories
+    await Category.insertMany([{ category: 'Best Beer', active: true, order: 0 },
+                               { category: 'Most Interesting', active: true, order: 1 },
+                               { category: 'COVID Beer', active: true, order: 2 },
+                               { category: 'Best Label', active: false, order: 2 }]);
+
 
 
     console.log(`Listening on port ${PORT}`);

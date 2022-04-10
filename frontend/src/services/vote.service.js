@@ -4,13 +4,18 @@ module.exports = function VoteService() {
     /**
      * @returns {{ success: boolean, categories?: String[], errorMessage?: String }}
      */
-    this.voteCategories = function() {
-        // TODO: Need to make call to web service
+    this.voteCategories = async function() {
+        try {
+            const response = await axios.get('http://localhost:2000/votes/VoteCategories');
 
-        // This is temp
-        var categories = ['Best Beer', 'Best Label', 'Most Unique'];
-
-        return { success: true, categories: categories };
+            if (response.status != 200)
+                return { success: false, errorMessage: 'There was an error getting the voting categories.' };
+            else
+                return { success: true, categories: Array.from(response.data, x => x.category) };
+        } catch (error) {
+            console.error(error);
+            return { success: false, errorMessage: 'There was an error getting the voting categories.' };
+        }
     }
 
     /**
