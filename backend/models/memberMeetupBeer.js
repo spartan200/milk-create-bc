@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const FuzzyMatching = require('fuzzy-matching');
 
 // Joiner table for member, beers, and meetups
 var memberMeetupBeerSchema = new mongoose.Schema({
@@ -39,8 +40,55 @@ memberMeetupBeerSchema.statics.getAll = async function() {
     return await this.find();
 }
 
+/**
+ * 
+ * @param {String[]} String[] if a possible match is found.  Null is returned if there isn't a possible match.
+ */
+memberMeetupBeerSchema.statics.fuzzyMatchBrewery = async function(brewery) {
+    // Get all the breweries
+    // TODO: only show unique
+    var breweries = (await this.find({})).map(x => x.brewery);
+    var matches = [];
+    var lastMatch = null;
+
+    do {
+        var fm = new FuzzyMatching(breweries);
+        lastMatch = fm.get(brewery).value;
+
+        if (lastMatch != null) {
+            breweries.splice(breweries.indexOf(lastMatch), 1);
+            matches.push(lastMatch);
+        }
+    } while(lastMatch != null);
+
+    return matches;
+}
+
+memberMeetupBeerSchema.statics.fuzzyMatchBeer = async function(breweries, beer) {
+    var matches = [];
+
+    // For each brewery check if there are any possible matches
+    for (const brewery of breweries) {
+        const beers = (await this.find({ brewery: brewery })).map(x => x.beer);
+
+        var lastMatch = null;
+        do {
+            var fm = new FuzzyMatching(beers);
+            lastMatch = fm.get(beer).value;
+
+            if (lastMatch != null) {
+                beers.splice(beers.indexOf(lastMatch), 1);
+                matches.push({ brewery: brewery, beer: lastMatch });
+            }
+        } while(lastMatch != null);
+    }
+
+    return matches;
+}
+
 memberMeetupBeerSchema.statics.insertRecord = async function(email, meetupDate, brewery, beer) {
     return await this.create({ member: email, activeDate: meetupDate, brewery: brewery, beer: beer });
 }
+
 
 module.exports = mongoose.model("MemberMeetupBeer", memberMeetupBeerSchema);

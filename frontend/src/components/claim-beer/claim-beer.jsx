@@ -52,12 +52,42 @@ function Template() {
               <Form.Control.Feedback type="invalid">Please enter an email.</Form.Control.Feedback>
             </Form.Group>
 
+            <Button variant="secondary" onClick={this.checkIsAvailable}>
+              Check Availability
+            </Button>
+
             <Button variant="primary" type="submit">
               Submit
             </Button>
           </Form>
         </Col>
       </Row>
+      
+      {/* Only show this if there are more than 1 duplicate beers */}
+      {this.state.duplicateBeers != null && this.state.duplicateBeers.length > 0 &&
+      
+      <Row className="justify-content-md-center">
+        <Col xs md="6">
+          <Alert variant="danger">
+            <Alert.Heading>Possible duplicate {this.state.duplicateBeers.length}</Alert.Heading>
+            {
+              this.state.duplicateBeers.map(el => <Alert variant="danger">{el.brewery} - {el.beer}</Alert>)
+            }
+          </Alert>
+        </Col>
+      </Row>
+      }
+
+      {/* Only show this if we have checked for beers and there aren't any duplcates */}
+      {this.state.duplicateBeers != null && this.state.duplicateBeers.length == 0 &&
+      <Row className="justify-content-md-center">
+        <Col xs md="6">
+          <Alert variant="success">
+            <Alert.Heading>Could not find any duplicate beers.  You're good to go!!</Alert.Heading>
+          </Alert>
+        </Col>
+      </Row>
+      }
     </Container>
   );
 };

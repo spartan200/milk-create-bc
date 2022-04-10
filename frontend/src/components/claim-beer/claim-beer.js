@@ -1,17 +1,21 @@
 import React, { useState }    from "react";
 import Template from "./claim-beer.jsx";
 import ClaimBeerService from '../../services/claim.beer.service.js';
+import BeerService from '../../services/beer.service';
 
 class ClaimBeer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { brewery: '', beer: '', email: '', validated: false, failureMessage: null };
+    this.state = { brewery: '', beer: '', email: '', 
+                   validated: false, failureMessage: null, 
+                   duplicateBeers: null };
 
     this.breweryChange = this.breweryChange.bind(this);
     this.beerChange = this.beerChange.bind(this);
     this.emailChange = this.emailChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkIsAvailable = this.checkIsAvailable.bind(this);
     //this.validated = this.validated.bind(this);
   }
 
@@ -69,6 +73,15 @@ class ClaimBeer extends React.Component {
     var result = await new ClaimBeerService().claimBeer(this.state.brewery, this.state.beer, this.state.email);
     if (!result.success)
       this.setState({ failureMessage: result.errorMessage });
+  }
+
+  /**
+   * Handles when the check available button is clicked on the claim beer
+   * screen.
+   */
+  async checkIsAvailable() {
+    const result = await new BeerService().checkIsAvailable(this.state.brewery, this.state.beer);
+    this.setState({ duplicateBeers: result.duplicates });
   }
 }
 

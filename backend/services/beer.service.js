@@ -2,6 +2,8 @@ var Member = require('../models/member');
 var Meetup = require('../models/meetup');
 var MemberMeetupBeer = require('../models/memberMeetupBeer');
 
+var FuzzyMatching = require('fuzzy-matching');
+
 module.exports = function BeerService() {
 
     this.votableBeers = async function() {
@@ -18,6 +20,20 @@ module.exports = function BeerService() {
             return { success: false, errorMessage: 'There was an error getting the Beers for the Meetup' };
         console.log(Array.from(claimedBeers, x => {return { brewery: x.brewery, beer: x.beer}}));
         return { success: true, beers: Array.from(claimedBeers, x => {return { brewery: x.brewery, beer: x.beer}}) };
+    }
+
+
+    this.checkIsAvailable = async function(brewery, beer) {
+        if (brewery == null || beer == null)
+            return [];
+
+        // Get potential breweries
+        const possibleBreweries = await MemberMeetupBeer.fuzzyMatchBrewery(brewery);
+        if (possibleBreweries == null || possibleBreweries.length < 1)
+            // Never found a possible match
+            return [];
+
+        return await MemberMeetupBeer.fuzzyMatchBeer(possibleBreweries, beer);
     }
 
     /**

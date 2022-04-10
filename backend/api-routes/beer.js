@@ -31,6 +31,20 @@ router.get('/PastBeers', async (req, res) => {
     res.send(result);
 });
 
+/**
+ * Checks to see if the beer is available for claiming
+ */
+router.get('/CheckIsAvailable', async (req, res) => {
+    console.log('Checking is available');
+
+    const brewery = req.query.brewery;
+    const beer = req.query.beer;
+
+    const result = await new BeerService().checkIsAvailable(brewery, beer);
+
+    res.send(result);
+});
+
 // Claims the beer.  Function will check to see if the beer
 // has already been claimed for the current/previous meetup.
 router.post('/ClaimBeer', async (req, res) => {
