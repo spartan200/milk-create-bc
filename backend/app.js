@@ -133,8 +133,8 @@ app.listen(PORT, async () => {
                                        { meetup: 'Winter 2021', brewery: 'Hoyne Brewing', beer: 'Young Lions Hazy IPA Vol.2' }]);
     // Summer 2021
     await MemberMeetupBeer.insertMany([{ meetup: summer2021, brewery: 'Mount Arrowsmith Brewing Co.', beer: 'Salish Sea Pale Ale'},
-                                       { meetup: summer2021, brewery: 'LoveShack Libations', beer: '??' },
-                                       { meetup: summer2021, brewery: 'Brassneck Brewery', beer: '??' },
+                                       { meetup: summer2021, brewery: 'LoveShack Libations', beer: 'Whatever Wheat' },
+                                       { meetup: summer2021, brewery: 'Brassneck Brewery', beer: 'Passive Aggresive' },
                                        { meetup: summer2021, brewery: 'Riot Brewing Co.', beer: 'Jimbo Boysenberry Blackberry Sour'},
                                        { meetup: summer2021, brewery: 'Dageraad Brewing', beer: 'White' },
                                        { meetup: summer2021, brewery: 'Tofino Brewing Company', beer: 'Tuff Session Ale' },
@@ -146,6 +146,20 @@ app.listen(PORT, async () => {
                                        { meetup: summer2021, brewery: 'Sooke Oceanside Brewery', beer: 'Patio Lanterns' },
                                        { meetup: summer2021, brewery: 'Moon Under Water', beer: 'Seaberry Haze' }
                                     ]);
+
+    const feb22 = 'Pre Covid (Feb 20202)';
+    await MemberMeetupBeer.insertMany([{ meetup: feb22, brewery: 'Sooke Oceanside Brewery', beer: 'Renfrew Red' },
+                                       { meetup: feb22, brewery: 'Salt Spring Brewing', beer: 'Warbler Wheat Ale' },
+                                       { meetup: feb22, brewery: 'Lighthouse Brewing Company', beer: 'Numbskull' },
+                                       { meetup: feb22, brewery: 'Wolf Brewing Company', beer: 'Black & Tan' },
+                                       { meetup: feb22, brewery: 'Red Arrow Brewing Company', beer: 'Midnite Umber Ale' },
+                                       { meetup: feb22, brewery: 'Steamworks Brewing Company', beer: 'Salted Chocolate Porter' },
+                                       { meetup: feb22, brewery: 'Hoyne Brewing', beer: 'Appleton\'s Finest British Ale' },
+                                       { meetup: feb22, brewery: 'Hoyne Brewing', beer: 'Hoyne IPA' },
+                                       { meetup: feb22, brewery: 'Fernie Brewing Company', beer: 'Barrel Aged Belgian Stout' },
+                                       { meetup: feb22, brewery: 'Axe & Barrel Brewing', beer: 'Langford Lager' },
+                                       { meetup: feb22, brewery: 'Red Arrow Brewing Company', beer: 'Threesome' },
+                                       { meetup: feb22, brewery: 'Barkerville Brewery', beer: '52 Foot Stout' }]);
                     
     // Voting categories
     await Category.insertMany([{ category: 'Best Beer', active: true, order: 0 },
