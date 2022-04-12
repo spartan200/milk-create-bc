@@ -123,14 +123,25 @@ app.listen(PORT, async () => {
     await db();
 
     // Initialize the database
+    const winter2021 = 'Winter 2021';
     const summer2021 = 'Summer 2021';
+    const feb22 = 'Pre Covid (Feb 20202)';
     await Meetup.insertMany([{ name: 'Spring 2022', activeDate: new Date(), meetingDate: new Date(), status: 'CanClaim' },
-                             { name: 'Winter 2021', activeDate: new Date(), meetingDate: new Date(), status: 'CanVote' },
-                             { name: summer2021, activeDate: new Date(), meetingDate: new Date(), status: 'Done' }]);
+                             { name: winter2021, activeDate: new Date(), meetingDate: new Date(), status: 'CanVote' },
+                             { name: summer2021, activeDate: new Date(), meetingDate: new Date(), status: 'Done' },
+                             { name: feb22, activeDate: new Date(), meetingDate: new Date(), status: 'Done' }]);
 
-    await MemberMeetupBeer.insertMany([{ meetup: 'Winter 2021', brewery:'Foamers\' Folly Brewing Co.', beer: 'Beetlejuice Sour' },
-                                       { meetup: 'Winter 2021', brewery: 'Whistler Brewing Company', beer: 'Winter Dunkel' },
-                                       { meetup: 'Winter 2021', brewery: 'Hoyne Brewing', beer: 'Young Lions Hazy IPA Vol.2' }]);
+    await MemberMeetupBeer.insertMany([{ meetup: winter2021, brewery:'Foamers\' Folly Brewing Co.', beer: 'Beetlejuice Sour' },
+                                       { meetup: winter2021, brewery: 'Whistler Brewing Company', beer: 'Winter Dunkel' },
+                                       { meetup: winter2021, brewery: 'Hoyne Brewing', beer: 'Young Lions Hazy IPA Vol.2' },
+                                       { meetup: winter2021, brewery: 'Tofino Brewing Company', beer: 'Dawn Patrol' },
+                                       { meetup: winter2021, brewery: '??', beer: 'Blackberry Sour??' },
+                                       { meetup: winter2021, brewery: 'Red Racer', beer: 'Red Racer Raspberry Wheat Ale' },
+                                       { meetup: winter2021, brewery: 'Hoyne Brewing', beer: 'Vienna Amber Lager' },
+                                       { meetup: winter2021, brewery: 'Brassneck Brewery', beer: 'Old Money Mild' },
+                                       { meetup: winter2021, brewery: 'Mariner Brewing', beer: 'Stonefruit Kolsch' },
+                                       { meetup: winter2021, brewery: 'Red Arrow Brewing Company', beer: 'Idle Hands Oaked Orange Ale' },
+                                       { meetup: winter2021, brewery: 'Dog Mountain Brewing', beer: 'Coastal Haze' }]);
     // Summer 2021
     await MemberMeetupBeer.insertMany([{ meetup: summer2021, brewery: 'Mount Arrowsmith Brewing Co.', beer: 'Salish Sea Pale Ale'},
                                        { meetup: summer2021, brewery: 'LoveShack Libations', beer: 'Whatever Wheat' },
@@ -147,7 +158,6 @@ app.listen(PORT, async () => {
                                        { meetup: summer2021, brewery: 'Moon Under Water', beer: 'Seaberry Haze' }
                                     ]);
 
-    const feb22 = 'Pre Covid (Feb 20202)';
     await MemberMeetupBeer.insertMany([{ meetup: feb22, brewery: 'Sooke Oceanside Brewery', beer: 'Renfrew Red' },
                                        { meetup: feb22, brewery: 'Salt Spring Brewing', beer: 'Warbler Wheat Ale' },
                                        { meetup: feb22, brewery: 'Lighthouse Brewing Company', beer: 'Numbskull' },
