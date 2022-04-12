@@ -1,5 +1,7 @@
 var assert = require('assert');
 var BeerService = require('../services/beer.service');
+var EmailService = require('../services/email.service');
+
 const mongoose = require('mongoose');
 
 // tells mongoose to use ES6 implementation of promises
@@ -27,6 +29,7 @@ describe('Array', function() {
     });
 });
 
+// Function checks to see if the is available function si
 describe('BeerService', function() {
     describe('#checkIsAvailable()', function() {
         it('should return ??? when the duplicates are found', async function() {
@@ -38,3 +41,14 @@ describe('BeerService', function() {
         });
     });
 });
+
+describe('EmailService', function() {
+    describe('#sendCurrentBeers()', function() {
+        it('Should return true after it has sent successfully', async function() {
+            const emailService = new EmailService();
+            const result = await emailService.sendCurrentBeers();
+
+            assert.equal(result, true);
+        });
+    })
+})

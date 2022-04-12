@@ -41,6 +41,14 @@ memberMeetupBeerSchema.statics.getAll = async function() {
 }
 
 /**
+ * Returns the current list of beers
+ * @returns 
+ */
+memberMeetupBeerSchema.statics.currentBeers = async function() {
+    return await this.find();
+}
+
+/**
  * 
  * @param {String[]} String[] if a possible match is found.  Null is returned if there isn't a possible match.
  */
